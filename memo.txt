@@ -1,0 +1,65 @@
+rails new books
+#gem "graphql"
+bundle install
+rails generate graphql:install
+bundle install
+
+bundle exec rails webpacker:install:typescript
+// mv app/javascript/packs/application.js app/javascript/packs/application.ts
+// rm app/javascript/packs/hello_typescript.ts
+
+# application_controller.rb # def index ¥n end
+mkdir app/views/application
+echo "<h1>Hello, world</h1>" app/views/application/index.html.erb
+
+rails g graphql:install
+bundle install
+
+rails g graphql:object Book
+settings app/graphql/types/book_type.rb
+settings app/graphql/types/query_type.rb
+
+gem 'graphiql-rails', group :development
+
+rails g model book title:string
+rails db:migrate
+
+rails c
+Book.create!(title: "Active Rails")
+
+################################################################
+
+frontend
+
+rails webpacker:install:typescript
+settings tsconfig.json {compilerOptions: "jsx": "react"}
+
+rails webpacker:install:react
+
+rails g controller home index
+
+config/routes.rb get 'home/index' -> root to: 'home#index'
+
+##################
+typescript-test
+
+rails new typescript-test --webpack=react
+
+#gem "graphql"
+bundle install
+rails generate graphql:install
+bundle install
+
+bundle exec rails webpacker:install:typescript
+yarn add @types/react @types/react-dom
+
+config/routes.rb root 'welcome#index'
+
+package.json "ts-loader": "8.2.0"
+yarn install
+rails g controller welcome index
+rails s
+
+# eslint
+
+yarn add -D tslint tslint-react tslint-config-prettier
